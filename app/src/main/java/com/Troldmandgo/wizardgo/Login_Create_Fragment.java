@@ -7,25 +7,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginFragment extends Fragment {
+public class Login_CreateUser_Fragment extends Fragment {
+    private static final String TAG = "CreateUserPage";
 
-    Button btnCreateUser;
+    TextView btnCreateAccount;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login_create, container, false);
 
-        btnCreateUser = (Button) view.findViewById(R.id.createUserButton);
+        btnCreateAccount = (TextView) view.findViewById(R.id.createAccountButton);
 
-        btnCreateUser.setOnClickListener(new View.OnClickListener() {
+        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 Toast.makeText(getActivity(), "Create User Page", Toast.LENGTH_SHORT).show();
-                ((LoginActivity) getActivity()).setViewPager(1);
+                ((Login_Activity) getActivity()).setViewPager(0);
             }
         });
 
