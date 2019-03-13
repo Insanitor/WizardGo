@@ -101,9 +101,11 @@
         android:id="@+id/loginConnectButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_set_as"
-        tools:layout_editor_absoluteX="323dp"
-        tools:layout_editor_absoluteY="346dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassText"
+        app:srcCompat="@android:drawable/ic_menu_set_as" />
 
     <Button
         android:id="@+id/createUserButton"

@@ -11,10 +11,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class LoginCreateUserFragment extends Fragment {
+    private static final String TAG = "CreateUserPage";
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createuser, container, false);
+
+
 
         return view;
     }

@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
 
         mAdapter = new FragmentAdapter(getSupportFragmentManager());
 
-
         mPager = (ViewPager) findViewById(R.id.container);
 
         mPager.setOnTouchListener(new View.OnTouchListener() {
@@ -31,17 +30,17 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
                 return true;
             }
         });
+
+        setupViewPager(mPager);
     }
 
-    public void OnClickCreate(View view)
-    {
-        mPresenter.setViewPager(0);
-    }
+
 
     private void setupViewPager(ViewPager pager)
     {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(new LoginFragment(), "Fragment 1");
+        adapter.addFragment(new LoginFragment(), "Login Screen");
+        adapter.addFragment(new LoginCreateUserFragment(), "Create User Screen");
         pager.setAdapter(adapter);
     }
 
