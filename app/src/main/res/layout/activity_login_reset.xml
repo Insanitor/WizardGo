@@ -26,7 +26,7 @@
         android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
         android:gravity="center"
         android:hint="email"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
         android:paddingRight="35dp"

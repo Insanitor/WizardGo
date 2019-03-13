@@ -47,7 +47,7 @@
         android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
         android:gravity="center"
         android:hint="password"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
         android:paddingRight="35dp"
