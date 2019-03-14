@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class LoginFragment extends Fragment {
+public class Login_Login_Fragment extends Fragment {
 
     TextView btnCreateUser;
 
@@ -26,7 +26,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View V) {
                 Toast.makeText(getActivity(), "Create User Page", Toast.LENGTH_SHORT).show();
-                ((LoginActivity) getActivity()).setViewPager(1);
+                ((Login_Activity) getActivity()).setViewPager(1);
             }
         });
 

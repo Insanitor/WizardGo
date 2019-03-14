@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class LoginActivity extends AppCompatActivity implements LoginPresenter.View {
+public class Login_Activity extends AppCompatActivity implements Login_Presenter.View {
 
     ViewPager mPager;
 
     FragmentAdapter mAdapter;
 
-    LoginPresenter mPresenter;
+    Login_Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     private void setupViewPager(ViewPager pager)
     {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(new LoginFragment(), "Login Screen");
-        adapter.addFragment(new LoginCreateUserFragment(), "Create User Screen");
+        adapter.addFragment(new Login_Login_Fragment(), "Login Screen");
+        adapter.addFragment(new Login_Create_Fragment(), "Create User Screen");
         pager.setAdapter(adapter);
     }
 

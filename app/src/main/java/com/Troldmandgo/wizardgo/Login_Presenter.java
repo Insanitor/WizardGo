@@ -1,16 +1,16 @@
 package com.Troldmandgo.wizardgo;
 
-public class LoginPresenter {
+public class Login_Presenter {
 
     View view;
 
-    public LoginPresenter(View view) {
+    public Login_Presenter(View view) {
         this.view = view;
     }
 
     public void setViewPager(int i)
     {
-        ((LoginActivity)view).setViewPager(i);
+        ((Login_Activity)view).setViewPager(i);
     }
 
     public interface View
