@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_login_gradient">
+
     <ImageView
-        android:id="@+id/loginLogoReset"
+        android:id="@+id/loginLogo"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
         android:src="@drawable/ic_magic_trick"
-        app:layout_constraintBottom_toTopOf="@id/emailInputField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/emailToResetInputField"
+        android:id="@+id/recoveryInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/login_input_field_rounded"
-        android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
         android:gravity="center"
-        android:hint="email"
+        android:hint="Email"
         android:imeOptions="actionDone"
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp"
         android:paddingRight="35dp"
+        android:singleLine="true"
         android:textColor="@color/v_dark"
-        app:layout_constraintBottom_toTopOf="@id/resetPasswordButton"
+        app:layout_constraintBottom_toTopOf="@id/recoveryButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginLogoReset" />
+        app:layout_constraintTop_toBottomOf="@+id/loginLogo" />
 
     <Button
-        android:id="@+id/resetPasswordButton"
+        android:id="@+id/recoveryButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/login_button_rounded"
         android:text="Reset Password"
         android:textColor="@color/v_dark"
@@ -49,6 +53,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailToResetInputField" />
+        app:layout_constraintTop_toBottomOf="@id/recoveryInputField" />
 
 </android.support.constraint.ConstraintLayout>

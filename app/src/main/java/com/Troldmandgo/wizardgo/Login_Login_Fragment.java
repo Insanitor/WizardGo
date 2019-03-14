@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class Login_Login_Fragment extends Fragment {
 
     TextView btnCreateUser;
+    TextView btnForgotUser;
 
     @Nullable
     @Override
@@ -21,12 +22,21 @@ public class Login_Login_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login_login, container, false);
 
         btnCreateUser = (TextView) view.findViewById(R.id.registerText);
+        btnForgotUser = (TextView) view.findViewById(R.id.forgotText);
 
         btnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 Toast.makeText(getActivity(), "Create User Page", Toast.LENGTH_SHORT).show();
                 ((Login_Activity) getActivity()).setViewPager(1);
+            }
+        });
+
+        btnForgotUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                Toast.makeText(getActivity(), "Forgot User Page", Toast.LENGTH_SHORT).show();
+                ((Login_Activity) getActivity()).setViewPager(2);
             }
         });
 

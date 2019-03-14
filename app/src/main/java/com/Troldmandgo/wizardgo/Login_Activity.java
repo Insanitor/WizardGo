@@ -41,6 +41,7 @@ public class Login_Activity extends AppCompatActivity implements Login_Presenter
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment(new Login_Login_Fragment(), "Login Screen");
         adapter.addFragment(new Login_Create_Fragment(), "Create User Screen");
+        adapter.addFragment(new Login_Forgot_Fragment(), "Forgot User Screen");
         pager.setAdapter(adapter);
     }
 

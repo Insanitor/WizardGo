@@ -32,10 +32,10 @@ public class Login_Create_Fragment extends Fragment {
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                if (!emailInputText.getText().equals("") && !passwordInputText.getText().equals("")) {
+                if (MailValidator.isValidEmail(emailInputText.getText())) {
                     String pass = passwordInputText.getText().toString();
                     String conPass = passwordConfirmText.getText().toString();
-                    if (pass.equals(conPass)) {
+                    if (pass.equals(conPass) && !pass.equals("")) {
                         Toast.makeText(getActivity(), "Created New User", Toast.LENGTH_SHORT).show();
                         ((Login_Activity) getActivity()).setViewPager(0);
                     } else {
