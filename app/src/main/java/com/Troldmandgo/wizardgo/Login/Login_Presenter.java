@@ -1,4 +1,4 @@
-package com.Troldmandgo.wizardgo;
+package com.Troldmandgo.wizardgo.Login;
 
 public class Login_Presenter {
 

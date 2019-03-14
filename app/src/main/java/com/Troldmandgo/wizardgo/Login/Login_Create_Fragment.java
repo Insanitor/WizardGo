@@ -1,4 +1,4 @@
-package com.Troldmandgo.wizardgo;
+package com.Troldmandgo.wizardgo.Login;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.Troldmandgo.wizardgo.MailValidator;
+import com.Troldmandgo.wizardgo.R;
 
 public class Login_Create_Fragment extends Fragment {
     private static final String TAG = "CreateUserPage";

@@ -1,4 +1,4 @@
-package com.Troldmandgo.wizardgo;
+package com.Troldmandgo.wizardgo.Login;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.Troldmandgo.wizardgo.R;
 
 
 public class Login_Forgot_Fragment extends Fragment {

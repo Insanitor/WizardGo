@@ -1,25 +1,30 @@
-package com.Troldmandgo.wizardgo;
+package com.Troldmandgo.wizardgo.CharScreen;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class Login_Activity extends AppCompatActivity implements Login_Presenter.View {
+import com.Troldmandgo.wizardgo.FragmentAdapter;
+import com.Troldmandgo.wizardgo.Login.Login_Login_Fragment;
+import com.Troldmandgo.wizardgo.Login.Login_Presenter;
+import com.Troldmandgo.wizardgo.R;
+
+public class CharScreen_Activity extends AppCompatActivity implements CharScreen_Presenter.View {
 
     ViewPager mPager;
 
     FragmentAdapter mAdapter;
 
-    Login_Presenter mPresenter;
+    CharScreen_Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_charscreen);
 
-
+        mPresenter = new CharScreen_Presenter(this);
         mAdapter = new FragmentAdapter(getSupportFragmentManager());
 
         mPager = (ViewPager) findViewById(R.id.container);
@@ -39,9 +44,8 @@ public class Login_Activity extends AppCompatActivity implements Login_Presenter
     private void setupViewPager(ViewPager pager)
     {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Login_Login_Fragment(), "Login Screen");
-        adapter.addFragment(new Login_Create_Fragment(), "Create User Screen");
-        adapter.addFragment(new Login_Forgot_Fragment(), "Forgot User Screen");
+        adapter.addFragment(new CharScreen_Login_Fragment(), "Login Screen");
+
         pager.setAdapter(adapter);
     }
 
