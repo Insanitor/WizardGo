@@ -11,10 +11,14 @@ import com.Troldmandgo.wizardgo.R;
 
 public class Login_Activity extends AppCompatActivity implements Login_Presenter.View {
 
+    //ViewPager used for keeping track of different Fragments
     ViewPager mPager;
 
+    //FragmentAdapter is used to keep track of Fragments
+    //By allowing them to have a title
     FragmentAdapter mAdapter;
 
+    //Presenter is used to change the current Fragment
     Login_Presenter mPresenter;
 
     @Override
@@ -37,10 +41,17 @@ public class Login_Activity extends AppCompatActivity implements Login_Presenter
         setupViewPager(mPager);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0)
+            getSupportFragmentManager().popBackStack();
+        else
+            super.onBackPressed();
+    }
 
 
-    private void setupViewPager(ViewPager pager)
-    {
+    //Function used for setting up Fragments to the ViewPager
+    public void setupViewPager(ViewPager pager) {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment(new Login_Login_Fragment(), "Login Screen");
         adapter.addFragment(new Login_Create_Fragment(), "Create User Screen");
@@ -48,8 +59,8 @@ public class Login_Activity extends AppCompatActivity implements Login_Presenter
         pager.setAdapter(adapter);
     }
 
-    public void setViewPager(int i)
-    {
+    //Changes the Fragment that the ViewPager will show
+    public void setViewPager(int i) {
         mPager.setCurrentItem(i);
     }
 }

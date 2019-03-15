@@ -19,6 +19,7 @@ public class Login_Create_Fragment extends Fragment {
 
     TextView btnCreateAccount;
     EditText emailInputText;
+    EditText emailConfirmInputText;
     EditText passwordInputText;
     EditText passwordConfirmText;
 
@@ -29,6 +30,7 @@ public class Login_Create_Fragment extends Fragment {
 
         btnCreateAccount = (TextView) view.findViewById(R.id.createAccountButton);
         emailInputText = (EditText) view.findViewById(R.id.emailCreateInputField);
+        emailConfirmInputText = (EditText) view.findViewById(R.id.confirmEmailCreateInputField);
         passwordInputText = (EditText) view.findViewById(R.id.newPasswordInputField);
         passwordConfirmText = (EditText) view.findViewById(R.id.confirmPasswordInputField);
 
@@ -36,16 +38,22 @@ public class Login_Create_Fragment extends Fragment {
             @Override
             public void onClick(View V) {
                 if (MailValidator.isValidEmail(emailInputText.getText())) {
-                    String pass = passwordInputText.getText().toString();
-                    String conPass = passwordConfirmText.getText().toString();
-                    if (pass.equals(conPass) && !pass.equals("")) {
-                        Toast.makeText(getActivity(), "Created New User", Toast.LENGTH_SHORT).show();
-                        ((Login_Activity) getActivity()).setViewPager(0);
+                    String email = emailInputText.getText().toString();
+                    String confirmEmail = emailConfirmInputText.getText().toString();
+                    if (email.equals(confirmEmail)) {
+                        String pass = passwordInputText.getText().toString();
+                        String conPass = passwordConfirmText.getText().toString();
+                        if (pass.equals(conPass) && !pass.equals("")) {
+                            Toast.makeText(getActivity(), "Created New User", Toast.LENGTH_SHORT).show();
+                            ((Login_Activity) getActivity()).setViewPager(0);
+                        } else {
+                            Toast.makeText(getActivity(), passwordInputText.getText() + "Passwords doesn't Match" + passwordConfirmText.getText(), Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(getActivity(), passwordInputText.getText() + " - " + passwordConfirmText.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Emails doesn't Match", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Email & Password must be filled out.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Invalid Email Address", Toast.LENGTH_SHORT).show();
                 }
             }
         });
