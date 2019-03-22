@@ -3,18 +3,21 @@ package com.Troldmandgo.wizardgo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentAdapter extends FragmentStatePagerAdapter {
 
+    FragmentManager manager;
     final List<Fragment> mFragmentList = new ArrayList<>();
     final List<String> mFragmentTitleList = new ArrayList<>();
 
     //Constructor for the Custom Adapter
     public FragmentAdapter(FragmentManager fm) {
         super(fm);
+        manager = fm;
     }
 
     //Function for adding a new Fragment, along with a title for the Fragment.

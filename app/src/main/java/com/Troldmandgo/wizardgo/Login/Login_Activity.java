@@ -1,5 +1,6 @@
 package com.Troldmandgo.wizardgo.Login;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.view.View;
 import com.Troldmandgo.wizardgo.FragmentAdapter;
 import com.Troldmandgo.wizardgo.R;
 
-public class Login_Activity extends AppCompatActivity implements Login_Presenter.View {
+public class Login_Activity extends FragmentActivity implements Login_Presenter.View {
 
     //ViewPager used for keeping track of different Fragments
     ViewPager mPager;
@@ -43,9 +44,10 @@ public class Login_Activity extends AppCompatActivity implements Login_Presenter
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0)
-            getSupportFragmentManager().popBackStack();
-        else
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+            getSupportFragmentManager().popBackStackImmediate();
+        } else
             super.onBackPressed();
     }
 

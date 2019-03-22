@@ -1,4 +1,4 @@
-package com.Troldmandgo.wizardgo.CharScreen;
+package com.Troldmandgo.wizardgo.CharacterCreation;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -7,8 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.Troldmandgo.wizardgo.FragmentAdapter;
-import com.Troldmandgo.wizardgo.Login.Login_Login_Fragment;
-import com.Troldmandgo.wizardgo.Login.Login_Presenter;
 import com.Troldmandgo.wizardgo.R;
 
 public class CharScreen_Activity extends AppCompatActivity implements CharScreen_Presenter.View {
@@ -41,7 +39,7 @@ public class CharScreen_Activity extends AppCompatActivity implements CharScreen
 
 
 
-    private void setupViewPager(ViewPager pager)
+    public void setupViewPager(ViewPager pager)
     {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment(new CharScreen_Login_Fragment(), "Login Screen");

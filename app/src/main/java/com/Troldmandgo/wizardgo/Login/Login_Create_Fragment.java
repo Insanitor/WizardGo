@@ -47,10 +47,10 @@ public class Login_Create_Fragment extends Fragment {
                             Toast.makeText(getActivity(), "Created New User", Toast.LENGTH_SHORT).show();
                             ((Login_Activity) getActivity()).setViewPager(0);
                         } else {
-                            Toast.makeText(getActivity(), passwordInputText.getText() + "Passwords doesn't Match" + passwordConfirmText.getText(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), passwordInputText.getText() + "Passwords doesn't match" + passwordConfirmText.getText(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Emails doesn't Match", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Emails doesn't match", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Invalid Email Address", Toast.LENGTH_SHORT).show();
