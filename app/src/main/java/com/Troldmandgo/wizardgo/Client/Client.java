@@ -14,62 +14,115 @@ import java.net.SocketException;
 import java.nio.ByteBuffer;
 
 public class Client extends Thread {
+    //the global buffer size for the app
+    final static int BUFFER_SIZE = 2048;
 
-    final int bufferSize = 2048;
     DatagramSocket udpSocket;
     Logger logger;
+    NetworkPresenter presenter;
 
-    int clientId;
-    int joyId;
+    TcpThread tcpThread;
 
-    public Client(short tcpPort, short udpPort, Logger logger) throws IOException, SocketException {
-        try {
+    //id used when sending udp packets
+    int connectionId;
+    //player id for lookups and player details
+    int enjoyerId;
+
+    public Client(short tcpPort, short udpPort, Logger logger, NetworkPresenter presenter) throws IOException, SocketException {
+        try
+        {
+            tcpThread = new TcpThread("insert ip", tcpPort);
+            //set up our socket connection to be ready for connecting
             this.udpSocket = new DatagramSocket(udpPort);
+            //set our logging implementation
             this.logger = logger;
+            //set presenter
+            this.presenter = presenter;
         } catch (Exception e) {
-            e.printStackTrace();
+            //if the logger was not initialized, replace it with a
+            //console logger to get some sort of output
+            if(logger == null){
+                this.logger = new ConsoleLogger();
+            }
+
+            logger.printError(e);
         }
     }
 
     @Override
     public void run() {
 
+        //TODO:
     }
 
     protected class TcpThread extends Thread {
-
-
         Socket tcpSocket;
+        ByteBuffer buffer;
 
         public TcpThread(String internetAddress, int tcpPort) throws IOException {
             tcpSocket = new Socket(internetAddress, tcpPort);
-
         }
 
         @Override
         public void run() {
-            InputStream inputStream;
-            DataOutputStream outputStream;
-//            BufferedReader bufferedReader;
-            ByteBuffer byteBuffer = ByteBuffer.allocate(bufferSize);
-            try {
-                inputStream = tcpSocket.getInputStream();
-                outputStream = new DataOutputStream(tcpSocket.getOutputStream());
-                while (!this.isInterrupted()) {
-                    while (inputStream.available() > 0) {
+            //declare streams
+            InputStream inStream = null;
+            DataOutputStream outStream = null;
+            try{
+                //initialize streams
+                inStream = tcpSocket.getInputStream();
+                outStream = new DataOutputStream(tcpSocket.getOutputStream());
 
-                        int bytesRead = inputStream.read();
-                        if (bytesRead > -1) {
 
-                        }
+
+                //start the main accept loop
+                while(!this.isInterrupted() && tcpSocket.isConnected()){
+                    buffer.clear();
+                    buffer.put(new byte[1024]);
+                    buffer.clear();
+
+                    //check if bytes are available
+                    if(inStream.available() > 0){
+                        //read bytes from stream
+                        inStream.read(buffer.array(), 0, inStream.available());
                     }
+
+                    //flip buffer to set position and limit
+                    buffer.flip();
+
+                    //handle request based on id
+                    handleRequest(buffer.get());
                 }
-
-            } catch (Exception e) {
-                Log.e("TAG", e.getLocalizedMessage());
             }
+            catch(Exception e){
+                logger.printError(e);
+            }
+        }
 
+        private void handleRequest(byte b) {
+            switch(b){
+                //character change return message
+                case 1:
+                    break;
+                //location broadcast setting change return message
+                case 2:
+                    break;
+                //social request return message
+                case 3:
+                    break;
+                //sign in return message
+                case 4:
+                    break;
+                //connection id change
+                case 127:
+                    //set connection id used for udp communication
+                    connectionId = buffer.getInt();
+                    break;
+            }
         }
     }
 
+    protected class UdpThread extends Thread {
+
+    }
 }
