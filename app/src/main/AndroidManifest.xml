@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CharacterCreation.CharScreen_Activity"></activity>
+        <activity android:name=".GameScreen.Game_Activity"></activity>
+        <activity android:name=".CharacterCreation.CharScreen_Activity" />
         <activity
             android:name=".Login.Login_Activity"
             android:configChanges="orientation|screenSize"

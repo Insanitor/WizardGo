@@ -64,11 +64,9 @@ public class Client extends Thread {
                         }
                     }
                 }
-
             } catch (Exception e) {
                 Log.e("TAG", e.getLocalizedMessage());
             }
-
         }
     }
 
