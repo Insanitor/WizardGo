@@ -9,12 +9,12 @@ public class MockClient extends Thread implements NetworkModel {
     NetworkPresenter presenter;
     Logger logger;
 
-    ArrayList<LocationDataSet> clients;
+    ArrayList<LocationDataSet> clients = new ArrayList<>();
     int clientCount = 0;
     float[] bounds;
 
     boolean broadcast = true;
-    final int broadcastInterval = 50;
+    final int broadcastInterval = 500;
 
     public MockClient(NetworkPresenter presenter, Logger logger, int clientCount, float[] clientBounds){
         //set implementations
@@ -78,7 +78,7 @@ public class MockClient extends Thread implements NetworkModel {
                     float chance = rnd.nextFloat();
                     if(chance > 0.97){
                         if(chance > 0.99){
-                            int index = rnd.nextInt(clients.size());
+                            int index = rnd.nextInt(clients.size()-1);
                             presenter.onPlayerLeave(clients.get(index).getEnjoyerId());
                             clients.remove(index);
                         }
