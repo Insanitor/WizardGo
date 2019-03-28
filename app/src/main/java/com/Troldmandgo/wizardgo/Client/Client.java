@@ -32,11 +32,13 @@ public class Client extends Thread implements NetworkModel {
     int connectionId;
     //player id for lookups and player details
     int enjoyerId;
+    boolean broadcast = false;
 
     DatagramSocket udpSocket;
     Logger logger;
     NetworkPresenter presenter;
 
+    LocationBroadcasterThread broadcasterThread = new LocationBroadcasterThread();
     TcpThread tcpThread;
 
 
@@ -280,6 +282,11 @@ public class Client extends Thread implements NetworkModel {
                     break;
                 //sign in return message
                 case 4:
+                    int length = buffer.getInt();
+                    byte[] contents = new byte[length];
+                    buffer.get(contents, 0, length);
+                    String msg = new String(contents);
+                    logger.printMessage(msg);
                     break;
                 //connection id change
                 case 127:
@@ -296,33 +303,34 @@ public class Client extends Thread implements NetworkModel {
             ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
 
             while(!this.isInterrupted()){
+                if(broadcast){
+                    try{
+                        //fill out data for the location update packet
+                        buffer.putInt(connectionId);
+                        buffer.putFloat(longitude);
+                        buffer.putFloat(latitude);
 
-                try{
-                    //fill out data for the location update packet
-                    buffer.putInt(connectionId);
-                    buffer.putFloat(longitude);
-                    buffer.putFloat(latitude);
+                        buffer.flip();
 
-                    buffer.flip();
+                        DatagramPacket packet = new DatagramPacket(buffer.array(), buffer.array().length);
+                        packet.setPort(udpSocket.getLocalPort());
+                        packet.setAddress(InetAddress.getByName(serverAddr));
 
-                    DatagramPacket packet = new DatagramPacket(buffer.array(), buffer.array().length);
-                    packet.setPort(udpSocket.getLocalPort());
-                    packet.setAddress(InetAddress.getByName(serverAddr));
+                        udpSocket.send(packet);
+                    }catch(IOException e){
+                        logger.printError(e);
+                    }
 
-                    udpSocket.send(packet);
-                }catch(IOException e){
-                    logger.printError(e);
-                }
+                    //clean the buffer
+                    buffer.clear();
+                    buffer.put(new byte[BUFFER_SIZE]);
+                    buffer.clear();
 
-                //clean the buffer
-                buffer.clear();
-                buffer.put(new byte[BUFFER_SIZE]);
-                buffer.clear();
-
-                try{
-                    this.sleep(LOCATION_UPDATE_INTERVAL);
-                }catch(InterruptedException ie){
-                    logger.printError(ie);
+                    try{
+                        this.sleep(LOCATION_UPDATE_INTERVAL);
+                    }catch(InterruptedException ie){
+                        logger.printError(ie);
+                    }
                 }
             }
         }

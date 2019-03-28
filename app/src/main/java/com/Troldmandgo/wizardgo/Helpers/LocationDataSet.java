@@ -34,4 +34,9 @@ public class LocationDataSet {
     public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
+
+    public void setLocation(float longitude, float latitude){
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 }
