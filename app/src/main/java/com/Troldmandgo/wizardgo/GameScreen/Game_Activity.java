@@ -193,13 +193,24 @@ public class Game_Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     @Override
-    public void onPlayerJoin(long enjoyerId) {
+    public void onPlayerJoin(final LocationDataSet enjoyer) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                    Marker m = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(enjoyer.getLatitude(), enjoyer.getLongitude()))
+                            .title(String.valueOf(enjoyer.getEnjoyerId())));
 
+                    markerDictionary.add(enjoyer.getEnjoyerId(), m);
+            }
+        });
     }
 
     @Override
     public void onPlayerLeave(long enjoyerId) {
-
+        if(markerDictionary.containsKey(enjoyerId)){
+            markerDictionary.remove(enjoyerId);
+        }
     }
 }
 

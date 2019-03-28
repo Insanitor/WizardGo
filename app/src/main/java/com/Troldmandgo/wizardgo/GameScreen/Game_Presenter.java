@@ -42,8 +42,8 @@ public class Game_Presenter implements NetworkPresenter {
     }
 
     @Override
-    public void onPlayerJoin(long enjoyerId) {
-        view.onPlayerJoin(enjoyerId);
+    public void onPlayerJoin(LocationDataSet enjoyer) {
+        view.onPlayerJoin(enjoyer);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Game_Presenter implements NetworkPresenter {
 
         public void onLocationsReceived(ArrayList<LocationDataSet> locationData);
 
-        public void onPlayerJoin(long enjoyerId);
+        public void onPlayerJoin(LocationDataSet enjoyer);
 
         public void onPlayerLeave(long enjoyerId);
     }
