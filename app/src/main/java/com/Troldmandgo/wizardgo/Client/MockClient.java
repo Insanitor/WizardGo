@@ -36,6 +36,7 @@ public class MockClient extends Thread implements NetworkModel {
                 LocationDataSet client = new LocationDataSet(i, lng, lat);
                 //add clients to a list to loop through
                 clients.add(client);
+                presenter.onPlayerJoin(client);
             }
         }
     }
@@ -84,7 +85,7 @@ public class MockClient extends Thread implements NetworkModel {
                         }
                         else{
                             clients.add(createClient());
-                            presenter.onPlayerJoin(clients.get(clients.size() - 1).getEnjoyerId());
+                            presenter.onPlayerJoin(clients.get(clients.size() - 1));
                         }
                     }
                 }
