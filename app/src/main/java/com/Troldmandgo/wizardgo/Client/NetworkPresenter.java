@@ -10,6 +10,6 @@ public interface NetworkPresenter {
     void onVisibilityChanged();
     void onSignin();
     void onLocationsReceived(ArrayList<LocationDataSet> locationData);
-    void onPlayerJoin(long enjoyerId);
+    void onPlayerJoin(LocationDataSet enjoyer);
     void onPlayerLeave(long enjoyerId);
 }
