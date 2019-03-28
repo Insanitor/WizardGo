@@ -18,6 +18,7 @@ import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -35,7 +36,10 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game_Activity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, Game_Presenter.View {
 
@@ -45,6 +49,7 @@ public class Game_Activity extends AppCompatActivity implements OnMapReadyCallba
     private PermissionsManager permissionsManager;
     private Game_Presenter mPresenter;
     MockClient client;
+    Map<Long, Marker> markerDictionary = new HashMap<Long, Marker>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +69,8 @@ public class Game_Activity extends AppCompatActivity implements OnMapReadyCallba
                 .zoom(10)
                 .build();
 
-        float[] iAmAFloatArray = new float[] {5,10,7,12};
-        client = new MockClient(mPresenter,new ConsoleLogger(),2,iAmAFloatArray);
-
+        float[] iAmAFloatArray = new float[]{5, 10, 7, 12};
+        client = new MockClient(mPresenter, new ConsoleLogger(), 2, iAmAFloatArray);
 
 
     }
@@ -183,10 +187,11 @@ public class Game_Activity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void run() {
                 for (int i = 0; i < locationData.size(); i++) {
-                    map.addMarker(new MarkerOptions()
-                            .position(new LatLng(locationData.get(i).getLatitude(), locationData.get(i).getLongitude()))
-                            .title(String.valueOf(locationData.get(i).getEnjoyerId())));
-
+                    if (markerDictionary.containsKey(locationData.get(i).getEnjoyerId())) {
+                        markerDictionary.get(locationData.get(i).getEnjoyerId())
+                                .setPosition(new LatLng(locationData.get(i).getLatitude(),
+                                        locationData.get(i).getLongitude()));
+                    }
                 }
             }
         });
