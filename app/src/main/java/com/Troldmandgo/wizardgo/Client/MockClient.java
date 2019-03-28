@@ -65,8 +65,8 @@ public class MockClient extends Thread implements NetworkModel {
                     for(int i = 0; i < clients.size(); i++){
                         //set new location
                         clients.get(i).setLocation(
-                                clients.get(i).getLongitude() + (rnd.nextFloat() / 5),
-                                clients.get(i).getLatitude() + (rnd.nextFloat() / 5));
+                                clients.get(i).getLongitude() + ((rnd.nextFloat() - 0.5f) / 5),
+                                clients.get(i).getLatitude() + ((rnd.nextFloat() - 0.5f) / 5));
                     }
 
                     //give location data to presenter to present stuff with
