@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.Troldmandgo.wizardgo.GameScreen.Game_Activity;
 import com.Troldmandgo.wizardgo.Login.Login_Activity;
 import com.Troldmandgo.wizardgo.R;
 
@@ -18,6 +19,7 @@ import com.Troldmandgo.wizardgo.R;
 public class CharScreen_Login_Fragment extends Fragment {
 
     Button btnLogout;
+    Button btnLogin;
 
     @Nullable
     @Override
@@ -31,6 +33,17 @@ public class CharScreen_Login_Fragment extends Fragment {
             public void onClick(View V) {
                 Toast.makeText(getActivity(), "Login Page", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getActivity(), Login_Activity.class);
+                startActivity(i);
+            }
+        });
+
+        btnLogin = (Button) view.findViewById(R.id.loginButton);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                Toast.makeText(getActivity(), "Game Page", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), Game_Activity.class);
                 startActivity(i);
             }
         });
