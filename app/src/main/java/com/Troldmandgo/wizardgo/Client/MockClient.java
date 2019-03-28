@@ -40,6 +40,18 @@ public class MockClient extends Thread implements NetworkModel {
         }
     }
 
+    public LocationDataSet createClient(){
+        Random rnd = new Random();
+
+        //get a starting position
+        float lng = rnd.nextFloat() * ( bounds[0] - bounds[1]) + bounds[0];
+        float lat = rnd.nextFloat() * (bounds[2] - bounds[3]) + bounds[2];
+
+        LocationDataSet c = new LocationDataSet(++clientCount, lng, lat);
+
+        return c;
+    }
+
 
     @Override
     public void run(){
@@ -61,6 +73,20 @@ public class MockClient extends Thread implements NetworkModel {
                     presenter.onLocationsReceived(clients);
                     //sleep to avoid constant spam
                     this.sleep(broadcastInterval);
+
+                    //add and remove 'clients' to simulate active players joining and leaving the game
+                    float chance = rnd.nextFloat();
+                    if(chance > 0.97){
+                        if(chance > 0.99){
+                            int index = rnd.nextInt(clients.size());
+                            presenter.onPlayerLeave(clients.get(index).getEnjoyerId());
+                            clients.remove(index);
+                        }
+                        else{
+                            clients.add(createClient());
+                            presenter.onPlayerJoin(clients.get(clients.size() - 1).getEnjoyerId());
+                        }
+                    }
                 }
             }
         }
